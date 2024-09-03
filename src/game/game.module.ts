@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { GameService } from './game.service';
 import { GameController } from './game.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { Game } from './entities/game.entity';
-import { Move } from './entities/move.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Game, Move])],
-  controllers: [GameController],
+  imports: [TypeOrmModule.forFeature([Game])],
   providers: [GameService],
+  controllers: [GameController],
+  exports: [GameService],
 })
 export class GameModule {}

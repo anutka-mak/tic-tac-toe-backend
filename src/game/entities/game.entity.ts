@@ -16,4 +16,7 @@ export class Game {
 
     @Column({ nullable: true })
     playerO: string;
+
+    @Column({ default: false })
+    isGameOver: boolean;и
 }
