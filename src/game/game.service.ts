@@ -1,4 +1,8 @@
-import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
 import { Game } from './entities/game.entity';
 import { CreateGameDto } from './dto/create-game.dto';
 import { JoinGameDto } from './dto/join-game.dto';

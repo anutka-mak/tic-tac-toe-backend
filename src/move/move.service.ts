@@ -1,4 +1,8 @@
-import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
 import { Game } from '../game/entities/game.entity';
 import { GameService } from '../game/game.service';
 
@@ -28,6 +32,7 @@ export class MoveService {
 
   private checkGameStarted(): void {
     const game = this.gameService.getGame();
+
     if (!game) {
       throw new NotFoundException('Game not started');
     }
@@ -35,20 +40,15 @@ export class MoveService {
 
   private checkGameNotOver(): void {
     const game = this.gameService.getGame();
+
     if (game.isGameOver) {
       throw new BadRequestException('Game is over');
     }
   }
 
-  private checkCorrectTurn(playerId: string): void {
-    const game = this.gameService.getGame();
-    if (playerId !== game.currentPlayer) {
-      throw new BadRequestException('Not your turn');
-    }
-  }
-
   private checkPositionAvailable(position: number): void {
     const game = this.gameService.getGame();
+
     if (game.board[position] !== null) {
       throw new BadRequestException('Position already taken');
     }
